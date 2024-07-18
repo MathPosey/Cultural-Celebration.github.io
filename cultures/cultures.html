@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culture</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>African Culture</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+        <h2>Timeline</h2>
+        <div class="category" id="timeline-list">
+            <!-- Timeline items will be added here by JavaScript -->
+        </div>
+
+        <h2>Holidays</h2>
+        <div class="category" id="holiday-list">
+            <!-- Holidays will be added here by JavaScript -->
+        </div>
+
+        <h2>Recipes</h2>
+        <div class="category" id="recipe-list">
+            <!-- Recipes will be added here by JavaScript -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Culture Celebration. All rights reserved.</p>
+    </footer>
+    <script>
+        // JavaScript to populate the timeline, recipes, and holidays
+        const timeline = [
+            { title: 'Event 1', description: 'Description of event 1', date: '2024-01-01' },
+            // Add more timeline events
+        ];
+
+        const recipes = [
+            { title: 'Recipe 1', description: 'Description of recipe 1' },
+            // Add more recipes
+        ];
+
+        const holidays = [
+            { title: 'Osun Festival', description: 'Celebrated by the Yoruba people, this festival honors Oshun, the goddess of fertility, love, and water. Pilgrims visit the sacred Osun-Osogbo Sacred Grove, perform rituals, and offer prayers for blessings.', date: 'Last week of August' },
+        ];
+
+        function createCategoryItem(item) {
+            const categoryItem = document.createElement('div');
+            categoryItem.className = 'category-item';
+
+            const img = document.createElement('img');
+            img.src = '../images/sample-image.jpg'; // Replace with actual image paths
+            img.alt = item.title;
+
+            const content = document.createElement('div');
+            content.className = 'category-content';
+            content.innerHTML = `<strong>${item.title}</strong><br>${item.description}<br>${item.date || ''}`;
+
+            categoryItem.appendChild(img);
+            categoryItem.appendChild(content);
+
+            categoryItem.addEventListener('click', () => {
+                const isVisible = content.style.display === 'block';
+                document.querySelectorAll('.category-content').forEach(el => el.style.display = 'none');
+                content.style.display = isVisible ? 'none' : 'block';
+            });
+
+            return categoryItem;
+        }
+
+        const timelineList = document.getElementById('timeline-list');
+        timeline.forEach(item => {
+            const categoryItem = createCategoryItem(item);
+            timelineList.appendChild(categoryItem);
+        });
+
+        const recipeList = document.getElementById('recipe-list');
+        recipes.forEach(item => {
+            const categoryItem = createCategoryItem(item);
+            recipeList.appendChild(categoryItem);
+        });
+
+        const holidayList = document.getElementById('holiday-list');
+        holidays.forEach(item => {
+            const categoryItem = createCategoryItem(item);
+            holidayList.appendChild(categoryItem);
+        });
+    </script>
+</body>
+</html>
